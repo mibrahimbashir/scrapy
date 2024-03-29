@@ -1,0 +1,85 @@
+Part 10
+
+1. Inside your Virtual Machine, open the Firefox browser and install VS Code with the .deb file extension.
+
+2. Execute the VS Code debian file by running the following commands in terminal:
+    1. cd /home/{your-username}/Downloads
+    2. sudo dpkg -i code_1.87.2-1709912201_amd64.deb
+
+3. Close the Terminal.
+
+4. Open Terminal and run the command:
+    1. cd /home/{your-username}/Desktop (No need to run this if already in Desktop)
+    2. sudo apt update
+
+5. Check that Python and pip are ALREADY installed by running the following commands:
+    1. python --version
+    2. pip --version
+
+6. Clone the repo containing the code up to part 6. Run the command
+    1. git clone https://github.com/mibrahimbashir/scrapy.git
+    2. cd scrapy
+
+7. Create the virtual environment in your NEW Folder by running the following command:
+    1. sudo apt install python3.11-venv (If asked for password, enter your machine's password)
+    2. pip install virtualenv
+    3. python -m venv venv
+    4. source venv/bin/activate
+    5. pip install -r requirements.txt
+
+8. Run the command:
+    1. scrapy crawl bookspider (Everything should work fine)
+
+9. Run the command:
+    1. pip install scrapyd
+
+    ###(To check that scrapyd has run successfully)
+    2. scrapyd >scrapyd_logs.txt 2>&l & 
+    3. curl http://localhost:6800/daemonstatus.json
+
+10. To package up your code and let scrapyd have access to it, install scrapyd client:
+    1. pip install git+https://github.com/scrapy/scrapyd-client.git
+
+!!!! IMPORTANT
+
+11. Open the Scrapy folder and open the scrapy.cfg file in VS Code.
+    1. Uncomment the line IN scrapy.cfg file: url = http://localhost:6800
+    2. scrapyd-deploy default
+    3. curl http://localhost:6800/schedule.json -d project=default -d spider=bookspider
+
+12. Install scrapydweb by running the command:
+    1. pip install --upgrade git+https://github.com/my8100/scrapydweb.git
+
+13. Install specific versions of libraries for scrapydweb:
+    1. pip install flask-sqlalchemy==2.5.1
+    2. pip install SQLAlchemy==1.4.11
+    3. pip install Flask==2.0.2
+    4. pip install Werkzeug==2.0.2
+
+14. Run the command:
+    1. scrapydweb
+    2. (Re-run the command in case it gives an error)
+
+15. Interrupt the Scrapydweb process by pressing Ctrl + C
+
+16. pip install logparser
+
+17. code scrapydweb_settings_v10.py
+
+18. Set the value for ENABLE_AUTH = True
+
+19. Set a USERNAME & PASSWORD --- >
+
+20. Scroll down and under the SCRAPYD_SERVERS variable  comment out the line "('username', 'password', 'localhost', '6801', 'group'),"
+
+21. # Set the value for ENABLE_LOGPARSER = True
+
+22. Set the value for LOCAL_SCRAPYD_SERVER = '127.0.0.1:6800'
+
+23. Provide the FULL path to logs directory
+
+24. scrapydweb >scrapydweb_logs.txt 2>&l & 
+
+25. Check for running processes using the command "sudo ss -tunlp"
+
+26. To kill a process use the command "kill <process_id>"
