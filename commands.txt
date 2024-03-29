@@ -26,6 +26,7 @@ Part 10
     3. python -m venv venv
     4. source venv/bin/activate
     5. pip install -r requirements.txt
+    6. cd bookscraper
 
 8. Run the command:
     1. scrapy crawl bookspider (Everything should work fine)
