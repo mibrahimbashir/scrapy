@@ -17,7 +17,7 @@ Part 10
     2. pip --version
 
 6. Clone the repo containing the code up to part 6. Run the command
-    1. git clone https://github.com/mibrahimbashir/scrapy.git
+    1. git clone https://github.com/mibrahimbashir/scrapy-part6.git
     2. cd scrapy
 
 7. Create the virtual environment in your NEW Folder by running the following command:
